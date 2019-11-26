@@ -1,0 +1,110 @@
+@extends('user.layout.index')
+
+@section('titulo', 'Flashcards')
+
+@section('contents')
+<div class="row">
+
+    <!-- Init cards -->
+    <div class="card col-md-4 offset-4" style="width: 18rem;">
+        
+        <div class="card-body">
+            <div class="card-items">
+                <i class="far fa-star"></i>
+                <i class="fas fa-headphones"></i>
+            </div>
+            
+            <h5 class="card-title text-center">{{$card}}</h5>
+        </div>
+
+    </div>
+    <!-- End cards -->
+
+    <!-- Responses cards -->
+    <ul id="response" class="list-group col-md-4 offset-4">
+        @foreach ($words as $word)
+            <li class="list-group-item "><i id="check-response" class="far fa-check-circle"></i>{{$word}}</li>
+        @endforeach
+    </ul>
+    <!-- End Response cards -->
+</div>
+
+
+<style>
+#response{
+    margin-top:40px;
+    width: 100%;
+    padding: 0px;
+    color:#525252;
+    cursor: pointer;
+}
+
+#response > li:hover,#check-response:hover{ 
+    background-color: #42b883;
+    color: white;
+    -webkit-transition: background-color 0.8s ease;
+    -moz-transition: background-color 0.8s ease;
+    -o-transition: background-color 0.8s ease;
+    transition: background-color 0.8s ease;
+}
+
+#response > li {
+    color:#35495e;
+}
+
+#check-response{
+    padding: 0 5px 0 0;
+    color: #35495e;
+}
+
+#response > li{
+    margin: 0px 0px 10px 0px;
+    border-color: #42b883;
+    border-radius: 0.25rem;
+}
+
+.card{
+    margin-top: 25px;
+    font-family: 'Calistoga', cursive;
+    border: 0.5px solid #35495e;
+    color: #42b883;
+}
+
+.card-items{
+    float: right;
+    width: 100%;
+}
+
+.card-items > i{
+    color:#35495e;
+    font-size: 13px;
+    padding: 0px 3px;
+    float:right;
+}
+
+.card-title {
+    color: #35495e;
+    padding:20px;
+}
+
+nav.navbar-findcond { background: #fff; border-color: #ccc; box-shadow: 0 0 2px 0 #ccc; }
+nav.navbar-findcond a { color: #f14444; }
+nav.navbar-findcond ul.navbar-nav a { color: #f14444; border-style: solid; border-width: 0 0 2px 0; border-color: #fff; }
+nav.navbar-findcond ul.navbar-nav a:hover,
+nav.navbar-findcond ul.navbar-nav a:visited,
+nav.navbar-findcond ul.navbar-nav a:focus,
+nav.navbar-findcond ul.navbar-nav a:active { background: #fff; }
+nav.navbar-findcond ul.navbar-nav a:hover { border-color: #f14444; }
+nav.navbar-findcond li.divider { background: #ccc; }
+nav.navbar-findcond button.navbar-toggle { background: #f14444; border-radius: 2px; }
+nav.navbar-findcond button.navbar-toggle:hover { background: #999; }
+nav.navbar-findcond button.navbar-toggle > span.icon-bar { background: #fff; }
+nav.navbar-findcond ul.dropdown-menu { border: 0; background: #fff; border-radius: 4px; margin: 4px 0; box-shadow: 0 0 4px 0 #ccc; }
+nav.navbar-findcond ul.dropdown-menu > li > a { color: #444; }
+nav.navbar-findcond ul.dropdown-menu > li > a:hover { background: #f14444; color: #fff; }
+nav.navbar-findcond span.badge { background: #f14444; font-weight: normal; font-size: 11px; margin: 0 4px; }
+nav.navbar-findcond span.badge.new { background: rgba(255, 0, 0, 0.8); color: #fff; }
+
+</style>
+
+@endsection('contents')

@@ -19,7 +19,7 @@ class userAppCards extends Controller
 
 
     public function getIndex(){
-        return view('user.appCards',[
+        return view('user.cards',[
             'words' => $this->words,
             'card' => $this->card,
             'cardsTotal' => count($this->words)
