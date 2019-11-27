@@ -23,3 +23,7 @@ Route::prefix('user')->group(function(){
     Route::get('/home', 'homeApp@getIndex')->name('app.home');
 
 });
+
+Route::prefix('admin')->group(function(){
+    // Admin routes
+});
