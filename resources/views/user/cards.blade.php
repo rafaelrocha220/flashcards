@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-12 audio_wrapper">
-                <audio id="audioResponse" autoplay>
+                <audio id="audioResponse">
                     <source src="{{asset('audio/hello_word.mp3')}}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
@@ -33,37 +33,57 @@
     <!-- End cards -->
 
     <!-- Responses cards -->
-    <ul id="response" class="list-group col-md-4 offset-4">
-        @foreach ($words as $key => $word)
-            <li class="list-group-item "><i id="check-response" class="far fa-check-circle"></i>{{ $key }}</li>
-        @endforeach
-    </ul>
+    <div class="col-md-12">
+        <form action="" method="post">
+
+            <ul id="response" class="list-group col-md-4 offset-4">
+                @foreach ($words as $key => $word)
+                    <li class="list-group-item" onClick="selectResponse(this, '{{ $key }}' )" ><i id="check-response" class="far fa-check-circle"></i>{{ $key }}</li>
+                    <input style="display:none" id="check-{{$key}}" type="checkbox" name="" id="">
+                @endforeach
+            </ul>
+
+        </form>
+    </div>
     <!-- End Response cards -->
 </div>
 
 
 <script>
 
+    function selectResponse(obj,key){
+        var response = $('#check-' + key);
+
+        response.attr("checked", !response.attr("checked"));
+
+
+        if(response.attr("checked")){
+            console.log('ok')
+        }else{
+            console.log('nao')
+        }
+    }
+
     var x = document.getElementById("audioResponse");
-
-    function playAudio() {
-        x.play();
-    }
-
-    function pauseAudio() {
-        x.pause();
-    }
 
     // Run audio on load page
     $( "#playAudio" ).on( "click", function(){
-        $(".play").toggle();
         x.play();
     } );
 
     $( "#pauseAudio" ).on( "click", function(){
-        $(".play").toggle();
         x.pause();
     } );
+
+    // Change play/pause
+    $('#audioResponse').on('playing', function() {
+        $(".play").toggle();
+        // disable button/link
+    });
+    $('#audioResponse').on('ended', function() {
+        $(".play").toggle();
+        // enable button/link
+    });
 
 </script>
 
