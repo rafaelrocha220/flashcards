@@ -24,3 +24,8 @@
         </form>
     </div>
 </nav>
+
+<!-- 
+<div class="progress">
+    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+</div> -->
