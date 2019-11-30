@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::prefix('user')->group(function(){
     
-    Route::get('/app', 'userAppCards@getIndex')->name('app.cards');
+    Route::get('/app/{id?}', 'userAppCards@getIndex')->name('app.cards');
 
     Route::get('/home', 'homeApp@getIndex')->name('app.home');
 

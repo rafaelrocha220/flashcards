@@ -36,7 +36,7 @@
 
             <ul id="card-responses-body" class="list-group col-md-4 offset-4">
                 @foreach ($words as $key => $word)
-                    <li class="card-responses-item list-group-item" onClick="selectResponse(this, '{{ $word->id }}' )" ><i id="check-response" class="fas fa-check-circle"></i>{{ $word->translated }}</li>
+                    <li class="card-responses-item list-group-item" onClick="selectResponse(this, '{{ $word->id }}' )" ><i class="fas fa-check-circle check-response"></i>{{ $word->translated }}</li>
                     <input style="display:none" id="check-{{$word->id}}" type="radio" name="response-user" value="{{$word->word}}" id="">
                 @endforeach
             </ul>
@@ -63,16 +63,9 @@
         // If not checked turn checked
         response.attr("checked", "checked");
 
-        // Verify each response for add class
-        $( ".list-group-item" ).each(function( index ) {
+        $( ".list-group-item" ).removeClass('card-response-selected');
 
-            if($(this).is($(obj))){
-                $(obj).addClass('response-checked');
-            }else{
-                $(this).removeClass('response-checked');    
-            }
-
-        });
+        $(obj).addClass('card-response-selected');
 
         $.ajax({
             headers: {
@@ -82,7 +75,11 @@
             type: "POST",
             data: form.serialize(),
             success: function (response) {
-                console.log(response);
+                if(response == 1){
+                    $(obj).addClass('response-checked-correct');
+                }else{
+                    console.log('errada')
+                }
             
             },
             error: function(jqXHR, textStatus, errorThrown) {

@@ -10,11 +10,11 @@ use \App\Word_card;
 class userAppCards extends Controller
 {
  
-    public function getIndex(){
-        
+    public function getIndex($id){
+        $card = Card::where('id','=',$id)->first()->word_key;        
 
         return view('user.cards',[
-            'card' => Card::where('id','=','1')->first()->word_key,
+            'card' => $card,
             'words' => Word_card::join('words','word_cards.word_id','=','words.id')->select('words.*')->get(),
             'userLevel' => 1
         ]);
@@ -24,12 +24,10 @@ class userAppCards extends Controller
         $user = $request->input('response-user');
         $app = $request->input('response-app');
         
-        var_dump($request->post('response-user'));
-
-        // if($user == $app):
-        //     var_dump('correto');
-        // else:
-        //     var_dump('incorreto');
-        // endif;
+        if($user == $app):
+            return 1;
+        else:
+            return 0;
+        endif;
     }
 }
