@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="#header" class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{route('app.home')}}">LearnEnglish</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
         <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,14 @@
     </div>
 </nav>
 
-<!-- 
-<div class="progress">
-    <div data-percentage="0%" style="width: 50%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-</div> -->
+
+<div class="progress progress-response">
+    <div data-percentage="0%" style="width: 100%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+
+<script>
+ var progress = 100;
+var result = progress - 10;
+$('.progress-bar').css('width', result + '%');
+</script>

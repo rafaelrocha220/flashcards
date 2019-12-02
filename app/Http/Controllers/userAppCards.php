@@ -25,7 +25,10 @@ class userAppCards extends Controller
         $app = $request->input('response-app');
         
         if($user == $app):
-            return 1;
+            return[
+                'redirect'  => route('app.cards',[2]),
+                'type'      => 'success'
+            ];
         else:
             return 0;
         endif;

@@ -92,3 +92,10 @@
     padding: 0px;
 }
 /* END RESPONSE CARDS */
+
+/* Events Response*/
+.progress-response{
+    height: 0.35rem;
+    border-radius: 0px;
+}
+/* End events response */

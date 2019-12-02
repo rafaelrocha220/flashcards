@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="{{asset('css/cards.css')}}">
 
 <div class="row">
@@ -21,7 +22,7 @@
             </div>
 
             <h5 class="card-body-title text-center">{{$card}}</h5>
-            <h5 class="card-body-description text-center">"Used when meeting or greeting someone"</h5>
+            <h5 class="card-body-description text-center">"<b>Hello</b>, I'd like some information about flights to the US, please."</h5>
         </div>
 
     </div>
@@ -36,7 +37,7 @@
 
             <ul id="card-responses-body" class="list-group col-md-4 offset-4">
                 @foreach ($words as $key => $word)
-                    <li class="card-responses-item list-group-item" onClick="selectResponse(this, '{{ $word->id }}' )" ><i class="fas fa-check-circle check-response"></i>{{ $word->translated }}</li>
+                    <li class="card-responses-item list-group-item" onClick="selectResponse(this, '{{ $word->id }}' )" ><i class="fas fa-check-circle check-response"></i>{{ $word->description }}</li>
                     <input style="display:none" id="check-{{$word->id}}" type="radio" name="response-user" value="{{$word->word}}" id="">
                 @endforeach
             </ul>
@@ -47,6 +48,7 @@
 </div>
 
 <script>
+    // $('#header').after("<div class='progress progress-response'> <div data-percentage='0%' style='width: 50%;' class='progress-bar progress-bar-success' role='progressbar' aria-valuemin='0' aria-valuemax='100'></div> </div>")
 
     function selectResponse(obj,key){
 
@@ -75,12 +77,14 @@
             type: "POST",
             data: form.serialize(),
             success: function (response) {
-                if(response == 1){
+                if(response['type'] == 'success'){
                     $(obj).addClass('response-checked-correct');
+                    console.log(response['redirect'])
+                    	
+                    // window.location.href = response['redirect'];
                 }else{
                     console.log('errada')
                 }
-            
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
