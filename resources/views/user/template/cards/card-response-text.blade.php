@@ -50,6 +50,25 @@
 <script>
     // $('#header').after("<div class='progress progress-response'> <div data-percentage='0%' style='width: 50%;' class='progress-bar progress-bar-success' role='progressbar' aria-valuemin='0' aria-valuemax='100'></div> </div>")
 
+    function responseAction(type,redirect){
+        if(type == 'success'){
+            $('.progress-bar').css('background-color', 'green');
+        }else{
+            $('.progress-bar').css('background-color', 'red');
+        }
+
+        $('.response-info').css('height', 'auto');
+        $('.response-info').css('transition', '2s');
+        $('.response-info').css('opacity', '1');
+        $('.progress-bar').css('display', 'block');
+        $('.progress-bar').css('transition', '3s');
+        $('.progress-bar').css('width', '-100%');
+
+        setTimeout(function(){
+            // window.location.href = redirect;
+        },3000);
+    }
+
     function selectResponse(obj,key){
 
         var form = $("#card-response-form");
@@ -79,11 +98,10 @@
             success: function (response) {
                 if(response['type'] == 'success'){
                     $(obj).addClass('response-checked-correct');
-                    console.log(response['redirect'])
-                    	
-                    // window.location.href = response['redirect'];
+                    responseAction('success',response['redirect'])	
                 }else{
                     console.log('errada')
+                    responseAction('wrong',response['redirect'])
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
