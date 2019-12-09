@@ -3,20 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// Context 
 use \App\Card;
 use \App\Word;
 use \App\Word_card;
+use \App\User_card;
 
 class userAppCards extends Controller
 {
  
     public function getIndex($id){
-        $card = Card::where('id','=',$id)->first()->word_key;        
+        $card_user = User_card::where('user_id','=','0')->orderBy('ordem', 'desc')->first();
+        
+        $card = Card::where('id','=',$card_user->card_id)->first();        
+        
+        $words = Word_card::join('words','word_cards.word_id','=','words.id')->select('words.*')->get();
 
         return view('user.cards',[
             'card' => $card,
-            'words' => Word_card::join('words','word_cards.word_id','=','words.id')->select('words.*')->get(),
-            'userLevel' => 1
+            'words' => $words,
+            'card_user' => $card_user,
+            'userLevel' => $card_user->level
         ]);
     }
 
@@ -24,18 +31,33 @@ class userAppCards extends Controller
         $user = $request->input('response-user');
         $app = $request->input('response-app');
         
+        $card_user = User_card::where('user_id','=','0')->orderBy('ordem', 'desc')->first();
+        
         if($user == $app):
-            
-            return[
-                'redirect'  => route('app.cards',[2]),
-                'type'      => 'success'
-            ];
 
+            // Update card
+            User_card::update_level($card_user);
+            
+            if($card_user->level == 4){
+                $response = [
+                    'redirect'  => route('app.card_finish',[2]),
+                    'type'      => 'success'
+                ];
+            }elseif($card_user->level < 4){
+                $response = [
+                    'redirect'  => route('app.cards',[1]),
+                    'type'      => 'success'
+                ];
+            };
+                
         else:
-            return[
+            $response = [
                 'redirect'  => route('app.cards',[1]),
                 'type'      => 'wrong'
             ];
         endif;
+    
+        return $response;
     }
+
 }

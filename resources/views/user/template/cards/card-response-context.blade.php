@@ -6,10 +6,13 @@
     <div class="card col-md-4 offset-4" style="width: 18rem;">
         
         <div class="card-body">
-            <span class="card-items"><i class="far fa-star"></i></span>
 
             <div class="card-head">
                 
+                <span class="card-items"><i class="far fa-star"></i></span>
+                <span id="playAudio" class="play card-items"><i class="fas fa-play"></i></span>
+                <span id="pauseAudio" class="play card-items" style="display:none"><i class="fas fa-pause"></i></span>
+
                 <audio id="audioResponse">
                     <source src="{{asset('audio/hello_word')}}" type="audio/mpeg">
                     Your browser does not support the audio element.
@@ -17,15 +20,8 @@
 
             </div>
 
-            <h5 class="card-body-title text-center">
-                <span id="playAudio" class="play play_view text-center"><i class="fas fa-play"></i></span>
-            </h5>
-
-            <h5 class="card-body-title text-center">
-                <span id="pauseAudio" class="play play_view" style="display:none"><i class="fas fa-pause"></i></span>
-            </h5>
-
-            <h5 class="card-body-description text-center">"{{$card->description}}"</h5>
+            <h5 class="card-body-title text-center">{{$card->word_key}}</h5>
+            <h5 class="card-body-description text-center">{{$card->description}}</h5>
         </div>
 
     </div>
@@ -39,18 +35,19 @@
         @csrf
 
         <ul id="card-responses-body" class="list-group col-md-4 offset-4">
-            <h5>Write what you understood...</h5>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-            
-            
-            <button style="margin-top: 10px;background-color: #3f4d71;" class="btn btn-primary btn-md float-right"><i class="fa fa-circle-o-notch fa-spin"></i>Reply now</button>
-        </ul>
+            @foreach ($words as $key => $word)
 
+                @if($word->word == $card->word_key)
+                    <input type="hidden" name="correct-response" value="list-{{$word->id}}" >
+                @endif
+
+                <li class="list-{{$word->id}} item card-responses-item list-group-item" onClick="selectResponse(this, '{{ $word->id }}' )" ><i class="fas fa-check-circle check-response"></i>{{ $word->description }}</li>
+                <input style="display:none" id="check-{{$word->id}}" type="radio" name="response-user" value="{{$word->word}}" id="">
+            @endforeach
+        </ul>
 
     </form>
     <!-- End Response cards -->
-
-    
 
 </div>
 

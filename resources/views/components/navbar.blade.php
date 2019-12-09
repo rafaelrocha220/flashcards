@@ -26,56 +26,7 @@
 </nav>
 
 <!-- Progress alert -->
-<div class='response-info'>
-    <div class="progress progress-response">
-        <div data-percentage="0%" style="width:100%;" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-
-    <div class="alert-message alert-message-success">
-        <h4><strong>Correct!</strong></h4>
-        
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-        <a href="#" class="btn btn-xs btn-success pull-right">do an action</a>
-    </div>
+<div class="progress progress-response">
+    <div data-percentage="0%" style="width:100%;display:none" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 
-
-<style>
-.response-info{
-    height: 0px;
-    opacity:0;
-}
-
-.alert-message
-{
-    margin: 0px;
-    padding: 10px;
-    text-align: center;
-}
-.alert-message h4
-{
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.alert-message p:last-child
-{
-    margin-bottom: 0;
-}
-.alert-message code
-{
-    background-color: #fff;
-    border-radius: 3px;
-}
-.alert-message-success
-{
-    background-color: #F4FDF0;
-    border-color: #3C763D;
-}
-.alert-message-success h4,
-.alert-message-success p
-{
-    color: #3C763D;
-}
-</style>
