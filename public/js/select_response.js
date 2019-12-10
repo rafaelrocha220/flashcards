@@ -54,3 +54,51 @@
         });
 
     }
+
+    function getResponse(key){
+
+        var response = $('#response-user').val();
+
+        var form = $("#card-response-form");
+
+
+        key = key.replace(/\,/g, '');
+        key = key.replace(/\./g, '');
+        key = key.replace(/\!/g, '');
+        key = key.replace(/\?/g, '');
+        key = key.replace(/\"/g, '');
+
+        response = response.replace(/\,/g, '');
+        response = response.replace(/\./g, '');
+        response = response.replace(/\!/g, '');
+        response = response.replace(/\?/g, '');
+        response = response.replace(/\"/g, '');
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: form.attr('action'),
+            type: "POST",
+            data: {'response-user':response,'response-app':key},
+            success: function (response) {
+                console.log(response);
+                
+
+                if(response['type'] == 'success'){
+                    
+                    responseAction('success',response['redirect'])	
+
+                }else{
+                    reponseActionInput('wrong');
+                    responseAction('wrong',response['redirect'])
+                    
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+        
+        
+    }

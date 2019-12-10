@@ -22,7 +22,9 @@ Route::prefix('user')->group(function(){
 
     Route::get('/home', 'homeApp@getIndex')->name('app.home');
 
-    Route::post('/app', 'userAppCards@getResponse')->name('app.reponsecard');
+    Route::post('/app/list', 'userAppCards@getResponse')->name('app.reponsecard');
+
+    Route::post('/app/input', 'userAppCards@getResponseInput')->name('app.reponsecardinput');
     
 });
 

@@ -98,6 +98,11 @@
 #card-responses-body{
     padding: 0px;
 }
+
+.correct-response-input{
+    color: #55ae95;
+    margin-bottom: 5px;
+}
 /* END RESPONSE CARDS */
 
 /* Events Response*/

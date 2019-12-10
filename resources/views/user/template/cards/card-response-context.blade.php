@@ -3,7 +3,7 @@
 <div class="row">
 
     <!-- Init cards -->
-    <div class="card col-md-4 offset-4" style="width: 18rem;">
+    <div class="card col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1" style="width: 18rem;">
         
         <div class="card-body">
 
@@ -34,7 +34,7 @@
 
         @csrf
 
-        <ul id="card-responses-body" class="list-group col-md-4 offset-4">
+        <ul id="card-responses-body" class="list-group col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-10 offset-1">
             @foreach ($words as $key => $word)
 
                 @if($word->word == $card->word_key)

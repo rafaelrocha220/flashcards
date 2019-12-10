@@ -13,3 +13,22 @@ function responseAction(type,redirect){
         window.location.replace(redirect);
     }, 3500);
 }
+
+function reponseActionInput(type){
+    var text = $('.title-response');
+
+    var textResponseInput = $('.title-correct-response');
+    var correctResponseInput = $('.correct-response-input');
+
+    text.css('display','none');
+
+    textResponseInput.css('display','block');
+    correctResponseInput.css('display','block');
+
+    var responseUser = $('#response-user');
+
+    responseUser.css('border-color','#ff5454');
+    responseUser.css('color','#ff5454');
+    responseUser.attr('disabled','disabled');
+
+}
